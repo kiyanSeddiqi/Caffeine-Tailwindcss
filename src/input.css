@@ -1,0 +1,211 @@
+@import "tailwindcss";
+
+@font-face {
+  font-family: "dana-regular";
+  src: url("../font/Dana/woff2/DanaFaNum-Regular.woff2");
+}
+@font-face {
+  font-family: "dana-medium";
+  src: url("../font/Dana/woff2/DanaFaNum-Medium.woff2");
+}
+@font-face {
+  font-family: "dana-semibold";
+  src: url("../font/Dana/woff2/DanaFaNum-DemiBold.woff2");
+}
+@font-face {
+  font-family: "morabba-regular";
+  src: url("../font/Morabba/woff2/Morabba-Regular.woff2");
+}
+@font-face {
+  font-family: "morabba-medium";
+  src: url("../font/Morabba/woff2/Morabba-Medium.woff2");
+}
+@font-face {
+  font-family: "morabba-bold";
+  src: url("../font/Morabba/woff2/Morabba-Bold.woff2");
+}
+
+@theme {
+  --color-brown-300: #dbc1ac;
+  --color-brown-600: #967259;
+  --color-body-gray: #f3f4f6;
+
+  --font-dana: dana-regular, sans-serif;
+  --font-danaMd: dana-medium, sans-serif;
+  --font-dana-semiBold: dana-semibold, sans-serif;
+  --font-morabba: morabba-regular, sans-serif;
+  --font-morabbaMd: morabba-medium, sans-serif;
+  --font-morabba-bold: morabba-bold, sans-serif;
+}
+
+/* custom variant settings */
+@custom-variant dark (&:where(.dark, .dark *));
+
+@custom-variant child {
+  & > * {
+    @slot;
+  }
+}
+@custom-variant child-hover {
+  & > *:hover {
+    @slot;
+  }
+}
+
+@utility container {
+  padding: 0rem 1rem;
+  margin: auto;
+  @variant 2xl {
+    padding: 0rem 5rem;
+  }
+}
+
+@layer components {
+  .sub-menu {
+    @apply opacity-0 invisible group-hover:opacity-100 group-hover:visible p-5 border-t-2 border-green-500 absolute z-50 top-20 group-hover:top-10 w-52 bg-white rounded flex flex-col gap-y-4 font-danaMd shadow-md transition-all delay-100 dark:bg-zinc-700 child:hover:text-green-500 child:transition-all;
+  }
+}
+
+/* custom css styles */
+.nav-link::after {
+  content: "";
+  position: absolute;
+  bottom: -3px;
+  left: 50%;
+  width: 0;
+  height: 2px;
+  background-color: #22c55e;
+  transition: all 0.3s;
+}
+.nav-link:hover::after {
+  width: 100%;
+  left: 0;
+}
+
+.hide-sidemenu {
+  @apply translate-x-full;
+}
+.hide-shopcart {
+  @apply -translate-x-full;
+}
+.rotate-arrow {
+  @apply rotate-180;
+}
+
+.show-submenu {
+  @apply flex;
+}
+
+button {
+  cursor: pointer;
+}
+
+.swiper {
+  padding: 0 0.6rem !important;
+  overflow-x: hidden !important;
+  border-radius: 8px !important;
+}
+
+.header-swiper .swiper-pagination-wrapper {
+  @apply absolute -bottom-2 start-1/2 translate-x-1/2 h-9 w-36 flex items-center justify-center rounded-t-lg z-10 bg-[#F3F4F6] dark:bg-zinc-900;
+}
+
+.swiper-pagination-bullet {
+  @variant dark {
+    background-color: #fff !important;
+    opacity: 1 !important;
+  }
+}
+.swiper-pagination-bullet-active {
+  background-color: #22c55e !important;
+}
+
+.category-checkbox {
+  width: 18px;
+  height: 18px;
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  border: 2px solid rgba(0, 0, 0, 0.6);
+  border-radius: 2px;
+  cursor: pointer;
+  position: relative;
+  margin: 3px 11px 3px 1px;
+  transition: all 0.3s ease;
+}
+
+.category-checkbox:checked::after {
+  content: "";
+  position: absolute;
+  left: 5px;
+  top: 1px;
+  width: 6px;
+  height: 12px;
+  border-width: 0 2px 2px 0;
+  transform: rotate(45deg);
+  border-color: white;
+  border-style: solid;
+}
+
+.category-checkbox:checked {
+  background-color: #00c950;
+  border: none;
+}
+
+.tooltip-text {
+  position: absolute;
+  top: -36px;
+  left: 50%;
+  transform: translateX(-50%);
+  margin-left: -4px;
+  opacity: 0;
+  visibility: hidden;
+  border-radius: 8px;
+  width: 120px;
+  text-align: center;
+  padding: 0.3rem;
+  transition: all 0.3s;
+}
+.tooltip-text::after {
+  content: "";
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  margin-left: -2px;
+  border: 5px solid transparent;
+  border-top-color: #3f3f46;
+}
+@variant dark {
+  .tooltip-text::after {
+    border-top-color: #71717b;
+  }
+}
+
+.tooltip:hover .tooltip-text {
+  opacity: 1;
+  visibility: visible;
+}
+
+.product__price-input {
+  appearance: textfield !important;
+  -webkit-appearance: textfield !important;
+  -moz-appearance: textfield !important;
+}
+
+/* settings for fa-numbers */
+.ss01 {
+  -moz-font-feature-settings: "ss01";
+  -webkit-font-feature-settings: "ss01";
+  font-feature-settings: "ss01";
+}
+
+@media (max-width: 640px) {
+  .container {
+    max-width: 480px !important;
+  }
+}
+@media (max-width: 400px) {
+  .products__container {
+    grid-template-columns: 70% !important;
+  }
+}
