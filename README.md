@@ -1,4 +1,4 @@
-# caffeine (Tailwindcss) [Live Demo](https://caffeine-tailwindcss.netlify.app/pages/)
+# caffeine (Tailwindcss) [Live Demo](https://caffeine-app.netlify.app/pages/)
 
 > This is coffeeshop website that built by tailwindcss and swiper js libraries for just educational purposes.
 
